@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import pywhatkit as pwk
+import os
 
 url1_2gb = "https://buyzero.de/products/raspberry-pi-4b?src=raspberrypi&variant=28034031812710"
 url2_1gb = "https://electronics.semaf.at/Raspberry-Pi-4-15GHz-ARM-Cortex-A72-1GB-LPDDR4-RAM?src=raspberrypi"
@@ -68,8 +69,11 @@ print(message)
 time.sleep(30)
 
 try:
-     pwk.sendwhatmsg("+436605348510", message, 22, 56)
+     pwk.sendwhatmsg("+436605348510", message, 00, 3)
  
      print("Message Sent!")
 except: 
      print("Error in sending the message")
+
+time.sleep(120)
+os.system("TASKKILL /F /IM firefox.exe")
