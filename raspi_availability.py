@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import time
+import pywhatkit as pwk
 
 url1_2gb = "https://buyzero.de/products/raspberry-pi-4b?src=raspberrypi&variant=28034031812710"
 url2_1gb = "https://electronics.semaf.at/Raspberry-Pi-4-15GHz-ARM-Cortex-A72-1GB-LPDDR4-RAM?src=raspberrypi"
@@ -61,20 +63,13 @@ message += "(8gb) " + msg
 msg = get_soup(url9_8gb, "product-form__inventory inventory", "ausverkauft")
 message += "(8gb) " + msg
 
-# result = soup.findAll(class_="product-form__inventory inventory")
-
-# if "ausverkauft".upper() in str(result).upper():
-#     message += f"{url1_2gb.split('/')[2]}: Nicht vorhanden\n"
-# else:
-#     message += f"{url1_2gb.split('/')[2]}: Vorhanden\n"
-
-# soup = get_soup(url2_1gb)
-# result = soup.findAll(class_="signal_image label red-600 status-0")
-# # print(result)
-
-# if "nicht auf lager".upper() in str(result).upper():
-#     message += f"{url2_1gb.split('/')[2]}: Nicht vorhanden\n"
-# else:
-#     message += f"{url2_1gb.split('/')[2]}: Vorhanden\n"
-
 print(message)
+
+time.sleep(30)
+
+try:
+     pwk.sendwhatmsg("+436605348510", message, 22, 56)
+ 
+     print("Message Sent!")
+except: 
+     print("Error in sending the message")
